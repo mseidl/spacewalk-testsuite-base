@@ -9,8 +9,6 @@ Feature: I want to setup the proxy appliance
       And I follow "Create Key"  
       When I enter "SUSE proxy appliance" as "description"
       And I enter "SUSE-proxy" as "key"
-      When I select "SUSE-Manager-Proxy-2.1-Pool for x86_64" from "selectedChannel"
-      And I check "monitoring_entitled"
       And I check "provisioning_entitled" 
       And I click on "Create Activation Key"
       And I should see a "Activation key SUSE proxy appliance has been created." text

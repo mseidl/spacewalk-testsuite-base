@@ -29,8 +29,8 @@ Then /^I should be setup$/ do
 end
 
 Then /^I rehash the certificates$/ do
-  symbolic_link_cmd = 'ln -s /usr/share/rhn/RHN-ORG-TRUSTED-SSL-CERT /etc/ssl/certs/RHN-ORG-TRUSTED-SSL-CERT.pem'
-  rehash_cmd = 'c_rehash /etc/ssl/certs/'
+  symbolic_link_cmd = 'ln -s /usr/share/rhn/RHN-ORG-TRUSTED-SSL-CERT /etc/pki/trust/anchors/RHN-ORG-TRUSTED-SSL-CERT.pem'
+  rehash_cmd = '/usr/sbin/update-ca-certificates'
   sshcmd(symbolic_link_cmd, host: ENV['PROXY_APP'])
   sshcmd(rehash_cmd, host: ENV['PROXY_APP'])
 end
