@@ -19,6 +19,7 @@ Feature:  I want to setup pxe installations
      And I execute ncc-sync "-c sles11-sp3-pool-x86_64"
      And I execute ncc-sync "-c sles11-sp3-updates-x86_64"
      And I execute ncc-sync "-c sles11-sp3-suse-manager-tools-x86_64"
+     Then I wait till channels are synced
 
   Scenario: I want to add the profile to the disribution
     Given I am on the Systems page
@@ -32,5 +33,5 @@ Feature:  I want to setup pxe installations
     Then I should see a "Kickstart: sles11sp3-64" text
 
   Scenario: I want to pxe boot the machine
-    Given I to configure cobbler
+    Given I want to configure cobbler
     And I start the pxeboot client
