@@ -25,3 +25,7 @@ Feature:  I want to setup pxe installations
     And I attach the file "/sles11-sp3.xml" to "fileUpload"
     And I click on "Upload File" 
     Then I should see a "Kickstart: sles11sp3-64" text
+
+  Scenario: I want to pxe boot the machine
+    Given I to configure cobbler
+    And I start the pxeboot client
