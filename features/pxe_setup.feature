@@ -15,6 +15,11 @@ Feature:  I want to setup pxe installations
     And I click on "Create Autoinstallable Distribution"
     Then I should see a "Autoinstallable Distribution Created" text
 
+  Scenario: I add the channels for the proxy
+     And I execute ncc-sync "-c sles11-sp3-pool-x86_64"
+     And I execute ncc-sync "-c sles11-sp3-updates-x86_64"
+     And I execute ncc-sync "-c sles11-sp3-suse-manager-tools-x86_64"
+
   Scenario: I want to add the profile to the disribution
     Given I am on the Systems page
     And I follow "Kickstart" in the left menu
