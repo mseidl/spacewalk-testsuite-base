@@ -15,11 +15,16 @@ end
 
 When /^I start the pxeboot client$/ do
   cmd = "virsh destroy sumapxe; virsh start sumapxe"
-  result = sshcmd(cmd, host: ENV['SUMAPXE_VHOST'], ignore_err: true)
+  result = sshcmd(cmd, host: ENV['SUMAPXE_VHOST'], ignore_err: true)[:stdout]
   raise if ! result.include? 'Domain sumapxe started'
 end
 
-Then /^I wait till channels are synced$/ do
+When /^I congigure the servers 2nd lan$/ do
+  cmd = 'ifconfig eth1 192.168.0.61 netmask 255.255.255.0 up'
+  sshcmd(cmd)
+end
+
+When /^I wait till channels are synced$/ do
   log = '/var/log/rhn/reposync/sles11-sp3-suse-manager-tools-x86_64.log'
   cmd = "grep 'Sync completed' #{log}"
   while true 
