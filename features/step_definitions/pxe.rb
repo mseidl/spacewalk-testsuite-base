@@ -19,6 +19,14 @@ When /^I start the pxeboot client$/ do
   raise if ! result.include? 'Domain sumapxe started'
 end
 
+When /^I wait till the client is up$/ do
+  `ifconfig eth1 192.168.0.60 netmask 255.255.255.0 up`
+  while true
+    $cmd_out = `ping -c1 192.168.0.80`  # ip of sumapxe
+    break if $?.success?
+    sleep 60
+  end
+end
 When /^I congigure the servers 2nd lan$/ do
   cmd = 'ifconfig eth1 192.168.0.61 netmask 255.255.255.0 up'
   sshcmd(cmd)

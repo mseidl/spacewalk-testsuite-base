@@ -33,5 +33,7 @@ Feature:  I want to setup pxe installations
     Then I should see a "Kickstart: sles11sp3-64" text
 
   Scenario: I want to pxe boot the machine
-    Given I want to configure cobbler
+    Given I congigure the servers 2nd lan
+    And I want to configure cobbler
     And I start the pxeboot client
+    Then I wait till the client is up 
