@@ -1,8 +1,10 @@
 --- # List of features for reference host
 - features/init_user_create.feature
 - features/running.feature
+- features/add_proxy_channels.feature
 - features/login.feature
 - features/channels_add.feature
 - features/create_repository.feature
+- features/register_proxy_appliance.feature
 - features/create_activationkey.feature
 - features/pxe_setup.feature
