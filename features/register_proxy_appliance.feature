@@ -20,7 +20,8 @@ Feature: I want to setup the proxy appliance
       Then I should see a "Activation key SUSE proxy appliance has been modified" text
 
   Scenario: I run the proxy setup
-    When I register the proxy
+    Given I congigure the servers 2nd lan
+    And I register the proxy
     And I copy the ssl certs
     And I run the proxy setup
   
