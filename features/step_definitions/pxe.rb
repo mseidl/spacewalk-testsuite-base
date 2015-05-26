@@ -6,8 +6,6 @@ When /^I mount the nfs share$/ do
 end
 
 When /^I want to configure cobbler$/ do
-  ip = sshcmd("ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'", ignore_err: true)[:stdout]
-  puts ip.chomp!
   cmd = "cobbler system add --name pxesys --profile=sles11sp3-64:1:Novell --mac=52:54:00:08:c5:e7"
   sshcmd(cmd, ignore_err: true)
 end
@@ -28,7 +26,6 @@ When /^I start the pxeboot client$/ do
 end
 
 When /^I wait till the client is up$/ do
-  `dhcpcd eth1`
   sleep 600
   while true
     $cmd_out = `ping -c1 sumapxe`  # ip of sumapxe
@@ -38,8 +35,6 @@ When /^I wait till the client is up$/ do
 end
 
 When /^I congigure the servers 2nd lan$/ do
-  cmd = 'dhcpcd eth1'
-  sshcmd(cmd)
 end
 
 When /^I wait till channels are synced$/ do

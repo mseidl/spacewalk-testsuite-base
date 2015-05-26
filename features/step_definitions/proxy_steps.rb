@@ -10,8 +10,6 @@ Then /^I register the proxy$/ do
 end
 
 Then /^I run the proxy setup$/ do
-  ip_cmd = 'dhcpcd eth1'
-  sshcmd(ip_cmd, host: ENV['PROXY_APP'])
   cmd = "/usr/sbin/configure-proxy.sh --answer-file=/root/proxy_answers --non-interactive"
   sshcmd(cmd, host: ENV['PROXY_APP'])
 end
