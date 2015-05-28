@@ -10,7 +10,13 @@ Then /^I register the proxy$/ do
 end
 
 Then /^I run the proxy setup$/ do
+  step "I change the server in the answer file"
   cmd = "/usr/sbin/configure-proxy.sh --answer-file=/root/proxy_answers --non-interactive"
+  sshcmd(cmd, host: ENV['PROXY_APP'])
+end
+
+Then /^I change the server in the answer file$/ do
+  cmd = "sed -i 's/sumas.*/#{ENV['TESTHOST]'}/g' /root/proxy_answers"
   sshcmd(cmd, host: ENV['PROXY_APP'])
 end
 
@@ -21,7 +27,6 @@ Then /^I copy the ssl certs$/ do
   sshcmd("mkdir /root/ssl-build", host: ENV['PROXY_APP'])
   sshcmd(scpcmd, host: ENV['PROXY_APP'], ignore_err: true)
 end
-
 
 Then /^I should be setup$/ do
   sshcmd('pgrep squid', host: ENV['PROXY_APP']) 
