@@ -1,12 +1,12 @@
 Then /^I register the proxy$/ do
-  act_key = '--activationkey=1-SUSE-proxy'
-  url = "--serverUrl=https://#{ENV['TESTHOST']}/XMLRPC"
-  cert = "http://#{ENV['TESTHOST']}/pub/RHN-ORG-TRUSTED-SSL-CERT"
-  dest = '/usr/share/rhn/RHN-ORG-TRUSTED-SSL-CERT'
-  #download certificate and silence output
-  sshcmd("wget #{cert} -O #{dest} -o /dev/null", host: ENV['PROXY_APP'])
-  step 'I rehash the certificates'
-  sshcmd("rhnreg_ks #{url} #{act_key}", host: ENV['PROXY_APP'])
+  # create bootstrap script
+  bs_cmd = 'mgr-bootstrap --activation-keys=1-SUSE-proxy --no-up2date'
+  sshcmd(bs_cmd)
+  # bootstrap script url
+  bs_url = "http://#{ENV['TESTHOST']}/pub/bootstrap/bootstrap.sh"
+  sshcmd("wget -o /dev/null #{bs_url}", host: ENV['PROXY_APP'], ignore_err: true)
+  # Register the proxy
+  sshcmd("sh /root/bootstrap.sh", host: ENV['PROXY_APP'], ignore_err: true)
 end
 
 Then /^I run the proxy setup$/ do
@@ -19,7 +19,7 @@ Then /^I copy the ssl certs$/ do
   dest = "/root/ssl-build"
   scpcmd = "scp -o StrictHostKeyChecking=no '#{ENV['TESTHOST']}:#{certs}' #{dest} &> /dev/null"
   sshcmd("mkdir /root/ssl-build", host: ENV['PROXY_APP'])
-  sshcmd(scpcmd, host: ENV['PROXY_APP'])
+  sshcmd(scpcmd, host: ENV['PROXY_APP'], ignore_err: true)
 end
 
 
