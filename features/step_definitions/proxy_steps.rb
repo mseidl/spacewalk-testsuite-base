@@ -16,7 +16,7 @@ Then /^I run the proxy setup$/ do
 end
 
 Then /^I change the server in the answer file$/ do
-  cmd = "sed -i 's/sumas.*/#{ENV['TESTHOST]'}/g' /root/proxy_answers"
+  cmd = "sed -i 's/sumas.*/#{ENV['TESTHOST']}/g' /root/proxy_answers"
   sshcmd(cmd, host: ENV['PROXY_APP'])
 end
 
