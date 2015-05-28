@@ -5,6 +5,9 @@ Then /^I register the proxy$/ do
   # bootstrap script url
   bs_url = "http://#{ENV['TESTHOST']}/pub/bootstrap/bootstrap.sh"
   sshcmd("wget -o /dev/null #{bs_url}", host: ENV['PROXY_APP'], ignore_err: true)
+  # Don't disable local repos
+  change_bs = "sed -i 's/DISABLE_LOCAL_REPOS=1/DISABLE_LOCAL_REPOS=0/' /root/bootstrap.sh"
+  sshcmd(change_bs, host: ENV['PROXY_APP'])
   # Register the proxy
   sshcmd("sh /root/bootstrap.sh", host: ENV['PROXY_APP'], ignore_err: true)
 end
