@@ -29,7 +29,7 @@ Feature:  I want to setup pxe installations
     When I enter "sles11sp3-64" as "kickstartLabel"
     And I select "sles11sp3-64" from "kstreeId"
     And I attach the file "/sles11-sp3.xml" to "fileUpload"
-    And I click on "Upload File" 
+    And I click on "Create" 
     Then I should see a "Kickstart: sles11sp3-64" text
 
   Scenario: I want to pxe boot the machine
