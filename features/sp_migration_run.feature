@@ -27,3 +27,18 @@ Feature: Test SP migration with sles11
     Then I shut off the vm
     And I revert the snapshot
     Then I turn on the vm
+
+  Scenario: I create an activation key for sp migration key
+    Given I am on the Systems page
+    And I follow "Activation Keys" in the left menu
+    And I follow "Create Key"
+    When I enter "sp migration key" as "description"
+    And I enter "sp_mig" as "key"
+    And I check "monitoring_entitled"
+    And I check "provisioning_entitled"
+    And I select "SLES11-SP3-Pool for x86_64" from "selectedChannel"
+    And I click on "Create Activation Key"
+    And I follow "Child Channels"
+    And I check "SLES11-SP3-SUSE-Manager-Tools x86_64"
+    And I check "SLES11-SP3-Updates for x86_64"
+    Then I click on "Update Key"   
