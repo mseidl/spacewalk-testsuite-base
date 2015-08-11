@@ -22,3 +22,8 @@ Feature: Test SP migration with sles11
     And I execute mgr-sync "list channels --compact"
     Then I want to get "[I] sles11-sp4-suse-manager-tools-x86_64" 
     Then I wait till sp4 channels are synced
+
+  Scenario: I prepare the virtual machine
+    Then I shut off the vm
+    And I revert the snapshot
+    Then I turn on the vm
