@@ -42,3 +42,6 @@ Feature: Test SP migration with sles11
     And I check "SLES11-SP3-SUSE-Manager-Tools x86_64"
     And I check "SLES11-SP3-Updates for x86_64"
     Then I click on "Update Key"   
+
+  Scenario: I register the client
+    When I register the client for sp migration
