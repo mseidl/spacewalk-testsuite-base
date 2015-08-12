@@ -45,3 +45,15 @@ Feature: Test SP migration with sles11
 
   Scenario: I register the client
     When I register the client for sp migration
+
+  Scenario: I perform the SP migration
+    Given I am authorized
+    When I follow "Systems"
+    And I follow "sumapxc.suse.de"
+    And I follow "Software" in the content area
+    And I follow "SP Migration"
+    And I click on "Schedule Migration"
+    And I click on "Confirm"
+    And I run rhn_check on the sp migration client
+    And I verify SP4 was installed
+    Then I verify SP4 was installed

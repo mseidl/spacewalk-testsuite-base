@@ -25,3 +25,13 @@ When /^I register the client for sp migration$/ do
   sshcmd(bs_cmd)
   sshcmd(reg_cmd, host: "sumapxc.suse.de", ignore_err: true)
 end
+
+When /^I run rhn_check on the sp migration client$/ do
+  sshcmd("rhn_check", host: "sumapxc.suse.de")
+end
+
+When /^I verify SP4 was installed$/ do
+  cmd = 'cat /etc/issue | grep -o SP4'
+  out = sshcmd(cmd, host: 'sumapxc.suse.de')[:stdout]
+  fail if not out.include? 'SP4'
+end
