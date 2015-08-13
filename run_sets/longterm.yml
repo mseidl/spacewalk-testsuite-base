@@ -8,3 +8,4 @@
 - features/register_proxy_appliance.feature
 - features/create_activationkey.feature
 - features/pxe_setup.feature
+- features/sp_migration_run.feature
