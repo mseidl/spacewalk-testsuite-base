@@ -45,6 +45,7 @@ Feature: Test SP migration with sles11
 
   Scenario: I register the client
     When I register the client for sp migration
+    Then I verify SP3 is installed
 
   Scenario: I perform the SP migration
     Given I am authorized
@@ -55,5 +56,4 @@ Feature: Test SP migration with sles11
     And I click on "Schedule Migration"
     And I click on "Confirm"
     And I run rhn_check on the sp migration client
-    And I verify SP4 was installed
-    Then I verify SP4 was installed
+    Then I verify SP4 is installed

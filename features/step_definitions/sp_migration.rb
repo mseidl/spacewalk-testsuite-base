@@ -30,8 +30,14 @@ When /^I run rhn_check on the sp migration client$/ do
   sshcmd("rhn_check", host: "sumapxc.suse.de")
 end
 
-When /^I verify SP4 was installed$/ do
+When /^I verify SP4 is installed$/ do
   cmd = 'cat /etc/issue | grep -o SP4'
   out = sshcmd(cmd, host: 'sumapxc.suse.de')[:stdout]
   fail if not out.include? 'SP4'
+end
+
+When /^I verify SP3 is installed$/ do
+  cmd = 'cat /etc/issue | grep -o SP3'
+  out = sshcmd(cmd, host: 'sumapxc.suse.de')[:stdout]
+  fail if not out.include? 'SP3'
 end
