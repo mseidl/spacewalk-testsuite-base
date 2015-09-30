@@ -20,8 +20,9 @@ end
 
 Then /^I change the server in the answer file$/ do
   cmd = "sed -i 's/sumas.*/#{ENV['TESTHOST']}/g' /root/proxy_answers"
-  cmd = "sed -i 's/sumap.*/#{ENV['PROXY_APP']}/g' /root/proxy_answers"
   sshcmd(cmd, host: ENV['PROXY_APP'])
+  cmd2 = "sed -i 's/sumap.*/#{ENV['PROXY_APP']}/g' /root/proxy_answers"
+  sshcmd(cmd2, host: ENV['PROXY_APP'])
 end
 
 Then /^I copy the ssl certs$/ do
