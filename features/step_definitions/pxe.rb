@@ -56,3 +56,13 @@ When /^I wait till sp4 channels are synced$/ do
     sleep 60
   end
 end
+
+When /^I wait till sle12 channels are synced$/ do
+  log = '/var/log/rhn/reposync/sle-manager-tools12-x86_64-sp1.log'
+  cmd = "grep 'Sync completed' #{log}"
+  while true 
+    out = sshcmd(cmd, ignore_err: true)[:stdout]
+    break if out.include? 'Sync completed.'
+    sleep 60
+  end
+end
