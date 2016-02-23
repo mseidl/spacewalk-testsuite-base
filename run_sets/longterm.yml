@@ -9,3 +9,4 @@
 - features/create_activationkey.feature
 - features/pxe_setup.feature
 - features/sp_migration_run.feature
+- features/sp_migration_run_sle12.feature
