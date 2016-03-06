@@ -58,7 +58,7 @@ When /^I wait till sp4 channels are synced$/ do
 end
 
 When /^I wait till sle12 channels are synced$/ do
-  log = '/var/log/rhn/reposync/sle-manager-tools12-x86_64-sp1.log'
+  log = '/var/log/rhn/reposync/sle-manager-tools12-updates-x86_64-sp1.log'
   cmd = "grep 'Sync completed' #{log}"
   while true 
     out = sshcmd(cmd, ignore_err: true)[:stdout]
